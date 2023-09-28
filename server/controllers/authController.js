@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import User from "../models/User.js";
+import User from "../models/userModel.js";
 
 /* REGISTER USER*/
 
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     delete user.password;
-    res.status(200).json({token , user});
+    res.status(200).json({ token, user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

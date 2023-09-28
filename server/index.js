@@ -8,8 +8,12 @@ import helmet  from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url'
-import { register } from './controllers/auth.js';
+import { register } from './controllers/authController.js';
+import { createPost } from './controllers/postController.js';
 import authRoute from "./routes/authRoute.js";
+import userRoute from "./routes/userRoute.js";
+import postRoute from "./routes/postRoute.js";
+import { verifyToken } from './middleware/authMiddleware.js';
 
 // CONFIGURATION
 
@@ -47,11 +51,14 @@ const upload = multer({storage});
 //ROUTES with FIles
 
 app.post("/api/auth/register",upload.single("picture"), register);
+app.post("/api/posts",verifyToken ,upload.single("picture"),createPost);
 
 //ROUTES
 app.use("/api/auth" , authRoute);
 
+app.use("/api/users" , userRoute);
 
+app.use("/api/posts", postRoute);
 //mongoose setup
 
 
