@@ -1,16 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-# /apna-train/node_modules
+/connect-me/node_modules
 /server/node_modules
-# /apna-train/.pnp
+/connect-me/.pnp
 .pnp.js
 
 # testing
-# /apna-train/coverage
+/connect-me/coverage
 
 # production
-# /apna-train/build
+/connect-me/build
 
 # misc
 .DS_Store
