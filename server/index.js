@@ -14,6 +14,10 @@ import authRoute from "./routes/authRoute.js";
 import userRoute from "./routes/userRoute.js";
 import postRoute from "./routes/postRoute.js";
 import { verifyToken } from './middleware/authMiddleware.js';
+import User from "./models/userModel.js";
+import Post from "./models/postModel.js";
+
+import {users , posts} from "./data/index.js";
 
 // CONFIGURATION
 
@@ -70,7 +74,9 @@ mongoose.connect(process.env.MONGO_URL ,{
 }).then(()=>{
     app.listen(PORT , ()=>{
         console.log(`Server is running on port : ${PORT}` );
-    })
+    });
+    // User.insertMany(users);
+    // Post.insertMany(posts);
 })
 .catch((error)=>{
     console.log(`${error} connect failed`);
