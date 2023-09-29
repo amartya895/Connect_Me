@@ -1,11 +1,36 @@
 import './App.css';
+import Navbar from './components/Navbar';
+
+import {Outlet, createBrowserRouter} from "react-router-dom"
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import ProfileScreen from './screens/ProfieScreen';
 
 function App() {
   return (
-    <div className="bg-slate-300 w-28 h-28 flex justify-center items-center">
-      <h1>Hi I m Tailwind</h1>
+    <div>
+     <Navbar/>
+     <Outlet/>
     </div>
   );
 }
 
-export default App;
+export const appRouter = createBrowserRouter([
+  {
+    path:"/",
+    element:<App/>,
+    children:[
+      {
+        path:"/home",
+        element:<HomeScreen/>
+      },{
+        path:"/login",
+        element: <LoginScreen/>
+      },
+      {
+        path:"/profile/:userId",
+        element: <ProfileScreen/>
+      }
+    ]
+  }
+]);
